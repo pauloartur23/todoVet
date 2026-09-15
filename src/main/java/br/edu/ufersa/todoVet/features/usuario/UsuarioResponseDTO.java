@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.api.dtos;
+package br.edu.ufersa.todoVet.features.usuario;
 
 public record UsuarioResponseDTO(
         Long id,

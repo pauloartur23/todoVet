@@ -1,8 +1,8 @@
-package br.edu.ufersa.todoVet.api.controllers;
+package br.edu.ufersa.todoVet.features.cliente;
 
-import br.edu.ufersa.todoVet.api.dtos.ClienteRequestDTO;
-import br.edu.ufersa.todoVet.api.dtos.ClienteResponseDTO;
-import br.edu.ufersa.todoVet.api.dtos.PetResponseDTO;
+import br.edu.ufersa.todoVet.features.auth.dtos.ClienteRequestDTO;
+import br.edu.ufersa.todoVet.features.auth.dtos.ClienteResponseDTO;
+import br.edu.ufersa.todoVet.features.auth.dtos.PetResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package br.edu.ufersa.todoVet.api.controllers;
+package br.edu.ufersa.todoVet.features.tutor;
 
-import br.edu.ufersa.todoVet.api.dtos.agendamento.*;
+import br.edu.ufersa.todoVet.features.auth.dtos.agendamento.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

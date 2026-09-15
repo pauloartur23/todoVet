@@ -1,7 +1,7 @@
 // src/main/java/br/edu/ufersa/todoVet/api/controllers/PagamentoController.java
-package br.edu.ufersa.todoVet.api.controllers;
+package br.edu.ufersa.todoVet.features.pagamento;
 
-import br.edu.ufersa.todoVet.api.dtos.pagamento.*;
+import br.edu.ufersa.todoVet.features.auth.dtos.pagamento.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

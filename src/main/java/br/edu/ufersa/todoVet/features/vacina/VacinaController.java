@@ -1,7 +1,7 @@
 
-package br.edu.ufersa.todoVet.api.controllers;
+package br.edu.ufersa.todoVet.features.vacina;
 
-import br.edu.ufersa.todoVet.api.dtos.vacina.*;
+import br.edu.ufersa.todoVet.features.auth.dtos.vacina.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
