@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.Venda;
+package br.edu.ufersa.todoVet.features.venda;
 import br.edu.ufersa.todoVet.features.VendaRequestDTO;
 import br.edu.ufersa.todoVet.features.VendaResponseDTO;
 import jakarta.validation.Valid;
