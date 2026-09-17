@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.tutor;
+package br.edu.ufersa.todoVet.features.agendamento;
 
 import br.edu.ufersa.todoVet.features.auth.dtos.agendamento.*;
 import jakarta.validation.Valid;

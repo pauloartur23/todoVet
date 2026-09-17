@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.usuario;
+package br.edu.ufersa.todoVet.features.funcionario;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

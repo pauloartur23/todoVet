@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.usuario;
+package br.edu.ufersa.todoVet.features.funcionario;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
-public class UsuarioController {
+@RequestMapping("/api/v1/funcionarios")
+public class FuncionarioController {
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> listarTodos() {
