@@ -1,6 +1,6 @@
 package br.edu.ufersa.todoVet.api.controllers;
 
-import br.edu.ufersa.todoVet.api.dtos.UsuarioRequestDTO;
+import br.edu.ufersa.todoVet.api.dtos.FuncionarioRequestDTO;
 import br.edu.ufersa.todoVet.api.dtos.UsuarioResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
-public class UsuarioController {
+public class FuncionarioController {
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> listarTodos() {
@@ -23,7 +23,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid UsuarioRequestDTO usuarioAtualizado) {
+    public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioRequestDTO usuarioAtualizado) {
         return null;
     }
 
