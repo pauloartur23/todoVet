@@ -1,7 +1,7 @@
 
 package br.edu.ufersa.todoVet.features.produto;
 
-import br.edu.ufersa.todoVet.features.auth.dtos.produto.*;
+
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
