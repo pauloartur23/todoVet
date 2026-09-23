@@ -7,53 +7,56 @@ public abstract class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Column(nullable = false)
-    private String nome;
+    protected String nome;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String senha;
+    @Embedded
+    @AttributeOverride(name = "valor", column = @Column(name = "email", nullable = false, unique = true))
+    protected Email email;
 
     @Column(nullable = false)
-    private String telefone;
+    protected String senha;
+
+    @Column(nullable = false)
+    protected String telefone;
 
     protected Pessoa() {
         // construtor vazio exigido pelo JPA/Hibernate
     }
 
-    protected Pessoa(String nome, String email, String senha, String telefone) {
+    protected Pessoa(String nome, Email email, String senha, String telefone) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
+    public Long getId() {return id;}
+    public String getNome() {return nome;}
+    public Email getEmail() {return email;}
+    public String getSenha() {return senha;}
+    public String getTelefone() {return telefone;}
 
     public void atualizarDadosBasicos(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
+    }
+
+    public void atualizarEmail(Email novoEmail) {
+        this.email = novoEmail;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pessoa pessoa)) return false;
+        return id != null && id.equals(pessoa.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
