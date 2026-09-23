@@ -2,6 +2,8 @@ package br.edu.ufersa.todoVet.shared;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @MappedSuperclass
 public abstract class Pessoa {
 
@@ -28,7 +30,7 @@ public abstract class Pessoa {
 
     protected Pessoa(String nome, Email email, String senha, String telefone) {
         this.nome = nome;
-        this.email = email;
+        this.email = Objects.requireNonNull(email, "O e-mail é obrigatório e não pode ser nulo.");
         this.senha = senha;
         this.telefone = telefone;
     }
