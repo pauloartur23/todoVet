@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.domain.entities;
+package br.edu.ufersa.todoVet.features.prontuario.;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
