@@ -1,6 +1,6 @@
 package br.edu.ufersa.todoVet.features.funcionario;
 
-public record UsuarioResponseDTO(
+public record FuncionarioResponseDTO(
         Long id,
         String nome,
         String email,

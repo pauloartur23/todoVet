@@ -3,7 +3,7 @@ package br.edu.ufersa.todoVet.features.funcionario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record UsuarioRequestDTO(
+public record FuncionarioRequestDTO(
         @NotBlank(message = "Nome é obrigatório")
         String nome,
 

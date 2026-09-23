@@ -1,6 +1,6 @@
 package br.edu.ufersa.todoVet.features.auth;
 
-import br.edu.ufersa.todoVet.features.funcionario.UsuarioResponseDTO;
+import br.edu.ufersa.todoVet.features.funcionario.FuncionarioResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class AuthController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<UsuarioResponseDTO> registrar(@RequestBody @Valid CadastroRequestDTO novoUsuario) {
+    public ResponseEntity<FuncionarioResponseDTO> registrar(@RequestBody @Valid CadastroRequestDTO novoUsuario) {
         return null;
     }
 

@@ -11,17 +11,17 @@ import java.util.List;
 public class FuncionarioController {
 
     @GetMapping
-    public ResponseEntity<List<UsuarioResponseDTO>> listarTodos() {
+    public ResponseEntity<List<FuncionarioResponseDTO>> listarTodos() {
         return null;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<FuncionarioResponseDTO> buscarPorId(@PathVariable Long id) {
         return null;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid UsuarioRequestDTO usuarioAtualizado) {
+    public ResponseEntity<FuncionarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioRequestDTO usuarioAtualizado) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class FuncionarioController {
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<UsuarioResponseDTO>> buscarPorNome(@RequestParam String nome) {
+    public ResponseEntity<List<FuncionarioResponseDTO>> buscarPorNome(@RequestParam String nome) {
         return null;
     }
 }
