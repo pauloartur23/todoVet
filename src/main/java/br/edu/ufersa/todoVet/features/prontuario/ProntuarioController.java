@@ -1,6 +1,5 @@
 package br.edu.ufersa.todoVet.features.prontuario;
 
-import br.edu.ufersa.todoVet.features.auth.dtos.prontuario.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
