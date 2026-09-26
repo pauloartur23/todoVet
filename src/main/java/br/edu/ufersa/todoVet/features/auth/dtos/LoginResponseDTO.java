@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.auth;
+package br.edu.ufersa.todoVet.features.auth.dtos;
 
 public record LoginResponseDTO(
         String token,

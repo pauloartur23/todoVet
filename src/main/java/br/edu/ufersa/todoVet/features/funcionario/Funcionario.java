@@ -1,11 +1,12 @@
 package br.edu.ufersa.todoVet.features.funcionario;
 
-import br.edu.ufersa.todoVet.shared.Pessoa;
+import br.edu.ufersa.todoVet.features.auth.Email;
+import br.edu.ufersa.todoVet.features.auth.Usuario;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_funcionarios")
-public class Funcionario extends Pessoa {
+public class Funcionario extends Usuario {
 
     @Column(nullable = false)
     private String cargo;
@@ -14,7 +15,7 @@ public class Funcionario extends Pessoa {
         super();
     }
 
-    public Funcionario(String nome, String email, String senha, String telefone, String cargo) {
+    public Funcionario(String nome, Email email, String senha, String telefone, String cargo) {
         super(nome, email, senha, telefone);
         this.cargo = cargo;
     }

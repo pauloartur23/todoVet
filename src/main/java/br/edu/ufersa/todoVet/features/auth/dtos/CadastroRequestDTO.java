@@ -1,6 +1,6 @@
-package br.edu.ufersa.todoVet.features.auth;
+package br.edu.ufersa.todoVet.features.auth.dtos;
 
-import jakarta.validation.constraints.*;
+import br.edu.ufersa.todoVet.features.auth.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
