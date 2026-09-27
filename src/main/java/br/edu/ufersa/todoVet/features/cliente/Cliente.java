@@ -1,30 +1,61 @@
 package br.edu.ufersa.todoVet.features.cliente;
 
-import br.edu.ufersa.todoVet.features.auth.Email;
 import br.edu.ufersa.todoVet.features.auth.Usuario;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_clientes")
-public class Cliente extends Usuario {
+public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    @Column
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+    @Column(name = "endereco")
     private String endereco;
 
-    protected Cliente() {
-        super();
+    protected Cliente() {}
+
+    public Cliente(String nome, String email, String telefone, String endereco) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
     }
 
-    public Cliente(String nome, Email email, String senha, String telefone, String endereco) {
-        super(nome, email, senha, telefone);
-        this.endereco = endereco;
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 
     public String getEndereco() {
         return endereco;
     }
 
-    public void atualizarEndereco(String endereco) {
+    public void atualizarDadosCadastrais(String nome, String email, String telefone, String endereco) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
         this.endereco = endereco;
     }
 }

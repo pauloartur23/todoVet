@@ -15,12 +15,17 @@ public interface AuthDTOs {
             String password ) {}
     public record TokenResponseDTO(String token) {}
     public record RegisterRequestDTO(
+            @NotBlank(message = "O nome é obrigatório")
+            String nome,
             @NotBlank(message = "O e-mail é obrigatório")
             @Email(message = "Formato de e-mail inválido")
             String email,
             @NotBlank(message = "A senha é obrigatória")
             @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
             String password,
-            @NotNull(message = "O perfil (role) é obrigatório")
-            UserRole role ) {}
+            @NotBlank(message = "O telefone é obrigatório")
+            String telefone,
+            @NotBlank(message = "O cargo é obrigatório")
+            String cargo
+    ){}
 }

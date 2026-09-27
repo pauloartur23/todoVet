@@ -1,5 +1,7 @@
 package br.edu.ufersa.todoVet.features.auth;
 
+import br.edu.ufersa.todoVet.features.admin.Admin;
+import br.edu.ufersa.todoVet.features.funcionario.Funcionario;
 import org.springframework.stereotype.Service;
 import br.edu.ufersa.todoVet.features.auth.dtos.AuthDTOs;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,11 +14,15 @@ public class AuthService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder; }
     public void registrar(AuthDTOs.RegisterRequestDTO dto) {
-        if (userRepository.findByEmail(dto.email()).isPresent()) {
+        Email email = new Email(dto.email());
+        if (userRepository.findByEmail(email).isPresent()) {
             throw new IllegalArgumentException("E-mail já cadastrado no sistema.");
         }
         String encryptedPassword = passwordEncoder.encode(dto.password());
-        Usuario usu = new Usuario(dto.email(), encryptedPassword, dto.role());
-        userRepository.save(usu);
+        Senha senha = new Senha(encryptedPassword);
+        //= new Usuario(dto.nome(), email, senha, dto.telefone(), dto.role());
+
+        Funcionario funcionario = new Funcionario(dto.nome(), email, senha, dto.telefone(), dto.cargo());
+        userRepository.save(funcionario);
     }
 }
