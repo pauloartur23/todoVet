@@ -20,11 +20,10 @@ public abstract class Usuario implements UserDetails {
     protected String nome;
 
     @Embedded
-    @AttributeOverride(name = "valor", column = @Column(name = "email", nullable = false, unique = true))
     protected Email email;
 
-    @Column(nullable = false)
-    protected String password;
+    @Embedded
+    protected Senha password;
 
     @Column(nullable = false)
     protected String telefone;
@@ -37,7 +36,7 @@ public abstract class Usuario implements UserDetails {
         // construtor vazio exigido pelo JPA/Hibernate
     }
 
-    protected Usuario(String nome, Email email, String password, String telefone, UserRole role) {
+    protected Usuario(String nome, Email email, Senha password, String telefone, UserRole role) {
         this.nome = nome;
         this.email = Objects.requireNonNull(email, "O e-mail é obrigatório e não pode ser nulo.");
         this.password = password;
@@ -57,12 +56,14 @@ public abstract class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.password;
+        // Retorna a String contida dentro do record Senha
+        return this.password != null ? this.password.segredo() : null;
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        // Retorna a String contida dentro do record Email
+        return this.email != null ? this.email.endereco() : null;
     }
 
     @Override
