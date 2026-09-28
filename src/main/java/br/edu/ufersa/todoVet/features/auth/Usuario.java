@@ -9,7 +9,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-@MappedSuperclass
+@Entity
+@Table(name = "tb_usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario implements UserDetails {
 
     @Id
