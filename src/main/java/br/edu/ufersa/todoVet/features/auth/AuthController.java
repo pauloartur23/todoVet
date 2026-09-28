@@ -35,8 +35,4 @@ public class AuthController {private final AuthenticationManager authenticationM
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<Void> logout() {
-        return null;
-    }
 }

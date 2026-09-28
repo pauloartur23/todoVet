@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
@@ -27,10 +28,15 @@ public class SecurityFilter extends OncePerRequestFilter {
         String token = recoverToken(request);
         if (token != null) { String subject = tokenService.validateToken(token);
             if (subject != null) {
+            try {
                 UserDetails user = userDetailsService.loadUserByUsername(subject);
                 var authentication = new UsernamePasswordAuthenticationToken(
-                        user,null,user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication); }
+                        user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            } catch (UsernameNotFoundException e){
+                SecurityContextHolder.clearContext();
+            }
+            }
         }
         filterChain.doFilter(request, response);}
 
