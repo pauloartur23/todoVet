@@ -1,4 +1,6 @@
-package br.edu.ufersa.todoVet.features.produto;
+package br.edu.ufersa.todoVet.features.produto.dto;
+
+import br.edu.ufersa.todoVet.features.produto.Produto;
 
 import java.math.BigDecimal;
 

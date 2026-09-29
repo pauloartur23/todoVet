@@ -2,6 +2,9 @@
 package br.edu.ufersa.todoVet.features.produto;
 
 
+import br.edu.ufersa.todoVet.features.produto.dto.ProdutoCreateDTO;
+import br.edu.ufersa.todoVet.features.produto.dto.ProdutoResponseDTO;
+import br.edu.ufersa.todoVet.features.produto.dto.ProdutoUpdateDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +18,19 @@ import java.util.List;
 public class ProdutoController {
 
     @GetMapping
-    public ResponseEntity<List<ProdutoResponse>> listar(
+    public ResponseEntity<List<ProdutoResponseDTO>> listar(
             @RequestParam(required = false) String nome) {
         return null;
     }
 
     @GetMapping("/{produtoId}")
-    public ResponseEntity<ProdutoResponse> buscarPorId(@PathVariable Long produtoId) {
+    public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long produtoId) {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criar(
-            @RequestBody @Valid ProdutoCreate dto,
+    public ResponseEntity<ProdutoResponseDTO> criar(
+            @RequestBody @Valid ProdutoCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
         URI uri = uriBuilder
@@ -39,9 +42,9 @@ public class ProdutoController {
     }
 
     @PutMapping("/{produtoId}")
-    public ResponseEntity<ProdutoResponse> atualizar(
+    public ResponseEntity<ProdutoResponseDTO> atualizar(
             @PathVariable Long produtoId,
-            @RequestBody @Valid ProdutoUpdate dto) {
+            @RequestBody @Valid ProdutoUpdateDTO dto) {
         return null;
     }
 
