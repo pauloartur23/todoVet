@@ -11,29 +11,35 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/funcionarios")
 public class FuncionarioController {
+    private final FuncionarioApplicationService applicationService;
+
+    public FuncionarioController(FuncionarioApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
 
     @GetMapping
     public ResponseEntity<List<FuncionarioResponseDTO>> listarTodos() {
-        return null;
+        return ResponseEntity.ok(applicationService.listarTodos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<FuncionarioResponseDTO> buscarPorId(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorId(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<FuncionarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioUpdateDTO usuarioAtualizado) {
-        return null;
+        return ResponseEntity.ok(applicationService.atualizar(id, usuarioAtualizado));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        return null;
+        applicationService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/buscar")
     public ResponseEntity<List<FuncionarioResponseDTO>> buscarPorNome(@RequestParam String nome) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorNome(nome));
     }
 }

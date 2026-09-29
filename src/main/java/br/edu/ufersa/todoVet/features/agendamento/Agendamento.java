@@ -2,6 +2,7 @@ package br.edu.ufersa.todoVet.features.agendamento;
 
 import br.edu.ufersa.todoVet.features.funcionario.Funcionario;
 import br.edu.ufersa.todoVet.features.pet.Pet;
+import br.edu.ufersa.todoVet.shared.exception.OperacaoInvalidaException;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -45,7 +46,7 @@ public class Agendamento {
         this.pet = Objects.requireNonNull(pet, "O pet é obrigatório.");
         this.veterinario = Objects.requireNonNull(veterinario, "O veterinário responsável é obrigatório.");
         if (data == null || data.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("A data do agendamento deve ser futura.");
+            throw new OperacaoInvalidaException("A data do agendamento deve ser futura.");
         }
         this.data = data;
         this.hora = Objects.requireNonNull(hora, "O horário é obrigatório.");
@@ -55,13 +56,13 @@ public class Agendamento {
 
     public void cancelar() {
         if (this.status == Status.CONCLUIDO)
-            throw new IllegalStateException("Não é possível cancelar um agendamento já concluído.");
+            throw new OperacaoInvalidaException("Não é possível cancelar um agendamento já concluído.");
         this.status = Status.CANCELADO;
     }
 
     public void concluir() {
         if (this.status == Status.CANCELADO)
-            throw new IllegalStateException("Não é possível concluir um agendamento cancelado.");
+            throw new OperacaoInvalidaException("Não é possível concluir um agendamento cancelado.");
         this.status = Status.CONCLUIDO;
     }
 
