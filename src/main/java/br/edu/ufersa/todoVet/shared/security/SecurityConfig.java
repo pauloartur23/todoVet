@@ -39,6 +39,7 @@ public class SecurityConfig {
                     req.requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll();
                     req.requestMatchers(HttpMethod.GET, "/api/v1/produtos/**").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/api/v1/auth/register").hasRole("ADMIN");
+                    req.requestMatchers(HttpMethod.POST, "/api/v1/auth/admins").hasRole("ADMIN");
                     //req.requestMatchers(HttpMethod.GET, "/api/v1/auth/").hasRole("ADMIN");
                     req.anyRequest().authenticated();})
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
