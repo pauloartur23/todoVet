@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,4 +36,17 @@ public class AuthController {private final AuthenticationManager authenticationM
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PostMapping("/admins")
+    public ResponseEntity<Void> registrarAdmin(@RequestBody @Valid AuthDTOs.RegisterAdminRequestDTO dto) {
+        authService.registrarAdmin(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/perfil")
+    public ResponseEntity<Void> atualizarPerfil(
+            @AuthenticationPrincipal Usuario usuarioLogado,
+            @RequestBody @Valid AuthDTOs.AtualizarPerfilRequestDTO dto) {
+        authService.atualizarPerfil(usuarioLogado, dto);
+        return ResponseEntity.noContent().build();
+    }
 }

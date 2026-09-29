@@ -94,7 +94,7 @@ public abstract class Usuario implements UserDetails {
     public String getTelefone() {return telefone;}
     public UserRole getRole(){return role;}
 
-    public void atualizarDadosBasicos(String nome, String telefone) {
+    public void atualizarPerfil(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }

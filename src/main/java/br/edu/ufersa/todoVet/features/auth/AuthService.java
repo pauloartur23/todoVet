@@ -27,4 +27,20 @@ public class AuthService {
         Funcionario funcionario = new Funcionario(dto.nome(), email, senha, dto.telefone(), dto.cargo());
         userRepository.save(funcionario);
     }
+    @Transactional
+    public void registrarAdmin(AuthDTOs.RegisterAdminRequestDTO dto) {
+        Email email = new Email(dto.email());
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new ConflitoException("E-mail já cadastrado no sistema.");
+        }
+
+        Senha senha = new Senha(passwordEncoder.encode(dto.password()));
+        Admin admin = new Admin(dto.nome(), email, senha, dto.telefone());
+        userRepository.save(admin);
+    }
+    @Transactional
+    public void atualizarPerfil(Usuario usuarioLogado, AuthDTOs.AtualizarPerfilRequestDTO dto) {
+        usuarioLogado.atualizarPerfil(dto.nome(), dto.telefone());
+        // dirty checking dentro do @Transactional já persiste, sem precisar de save()
+    }
 }
