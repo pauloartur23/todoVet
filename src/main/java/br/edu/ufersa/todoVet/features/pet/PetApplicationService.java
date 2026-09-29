@@ -32,6 +32,14 @@ public class PetApplicationService {
     }
 
     @Transactional(readOnly = true)
+    public List<PetResponseDTO> listarPorCliente(Long clienteId) {
+        return petRepository.findByClienteId(clienteId)
+                .stream()
+                .map(PetResponseDTO::fromEntity)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
     public PetResponseDTO buscarPorId(Long id) {
         return petRepository.findById(id)
                 .map(PetResponseDTO::fromEntity)

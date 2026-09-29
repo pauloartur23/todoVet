@@ -3,8 +3,7 @@ package br.edu.ufersa.todoVet.features.cliente;
 import br.edu.ufersa.todoVet.features.auth.Email;
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteRequestDTO;
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteResponseDTO;
-import br.edu.ufersa.todoVet.features.pet.Pet;
-import br.edu.ufersa.todoVet.features.pet.PetRepository;
+import br.edu.ufersa.todoVet.features.pet.PetApplicationService;
 import br.edu.ufersa.todoVet.features.pet.dto.PetResponseDTO;
 import br.edu.ufersa.todoVet.shared.exception.EntidadeNaoEncontradaException;
 import org.springframework.stereotype.Service;
@@ -17,14 +16,14 @@ public class ClienteApplicationService {
 
     private final ClienteRepository clienteRepository;
     private final ClienteDomainService clienteDomainService;
-    private final PetRepository petRepository;
+    private final PetApplicationService petApplicationService;
 
     public ClienteApplicationService(ClienteRepository clienteRepository,
                                      ClienteDomainService clienteDomainService,
-                                     PetRepository petRepository) {
+                                     PetApplicationService petApplicationService) {
         this.clienteRepository = clienteRepository;
         this.clienteDomainService = clienteDomainService;
-        this.petRepository = petRepository;
+        this.petApplicationService = petApplicationService;
     }
 
     @Transactional(readOnly = true)
@@ -86,10 +85,7 @@ public class ClienteApplicationService {
         if (!clienteRepository.existsById(clienteId)) {
             throw new EntidadeNaoEncontradaException("Cliente não encontrado para o ID: " + clienteId);
         }
-        return petRepository.findByClienteId(clienteId)
-                .stream()
-                .map(this::toPetResponseDTO)
-                .toList();
+        return petApplicationService.listarPorCliente(clienteId);
     }
 
     private ClienteResponseDTO toResponse(Cliente c) {
@@ -99,17 +95,6 @@ public class ClienteApplicationService {
                 c.getEmail() != null ? c.getEmail().endereco() : null,
                 c.getTelefone(),
                 c.getEndereco()
-        );
-    }
-
-    private PetResponseDTO toPetResponseDTO(Pet pet) {
-        return new PetResponseDTO(
-                pet.getId(),
-                pet.getCliente() != null ? pet.getCliente().getId() : null,
-                pet.getNome(),
-                pet.getEspecie(),
-                pet.getRaca(),
-                pet.getDataNascimento()
         );
     }
 }

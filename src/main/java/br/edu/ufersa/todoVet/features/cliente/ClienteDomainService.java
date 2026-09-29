@@ -32,7 +32,7 @@ public class ClienteDomainService {
     }
 
     public void validarExclusao(Long clienteId) {
-        if (!petRepository.findByClienteId(clienteId).isEmpty()) {
+        if (!petRepository.existsByClienteId(clienteId)) {
             throw new OperacaoInvalidaException("Não é possível remover um cliente que possui pets cadastrados.");
         }
     }
