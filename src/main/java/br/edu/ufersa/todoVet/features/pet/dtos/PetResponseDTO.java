@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.pet.dto;
+package br.edu.ufersa.todoVet.features.pet.dtos;
 
 import br.edu.ufersa.todoVet.features.pet.Pet;
 import java.time.LocalDate;

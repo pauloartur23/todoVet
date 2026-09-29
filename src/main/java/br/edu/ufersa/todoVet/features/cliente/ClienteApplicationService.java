@@ -4,7 +4,7 @@ import br.edu.ufersa.todoVet.features.auth.Email;
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteRequestDTO;
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteResponseDTO;
 import br.edu.ufersa.todoVet.features.pet.PetApplicationService;
-import br.edu.ufersa.todoVet.features.pet.dto.PetResponseDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetResponseDTO;
 import br.edu.ufersa.todoVet.shared.exception.EntidadeNaoEncontradaException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

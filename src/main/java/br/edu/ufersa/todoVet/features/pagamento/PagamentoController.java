@@ -2,8 +2,8 @@
 package br.edu.ufersa.todoVet.features.pagamento;
 
 
-import br.edu.ufersa.todoVet.features.pagamento.dto.PagamentoCreateDTO;
-import br.edu.ufersa.todoVet.features.pagamento.dto.PagamentoResponseDTO;
+import br.edu.ufersa.todoVet.features.pagamento.dtos.PagamentoCreateDTO;
+import br.edu.ufersa.todoVet.features.pagamento.dtos.PagamentoResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

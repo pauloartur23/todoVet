@@ -1,7 +1,7 @@
 package br.edu.ufersa.todoVet.features.prontuario;
 
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioCreateDTO;
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioResponseDTO;
+import br.edu.ufersa.todoVet.features.prontuario.dtos.ProntuarioCreateDTO;
+import br.edu.ufersa.todoVet.features.prontuario.dtos.ProntuarioResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

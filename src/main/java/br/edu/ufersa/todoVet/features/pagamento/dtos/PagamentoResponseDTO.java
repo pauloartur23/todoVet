@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.pagamento.dto;
+package br.edu.ufersa.todoVet.features.pagamento.dtos;
 
 import br.edu.ufersa.todoVet.features.pagamento.FormaPagamento;
 import br.edu.ufersa.todoVet.features.pagamento.Pagamento;

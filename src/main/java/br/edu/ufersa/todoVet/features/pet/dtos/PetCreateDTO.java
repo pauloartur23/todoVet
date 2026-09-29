@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.pet.dto;
+package br.edu.ufersa.todoVet.features.pet.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

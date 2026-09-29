@@ -2,9 +2,9 @@ package br.edu.ufersa.todoVet.features.pet;
 
 import br.edu.ufersa.todoVet.features.cliente.Cliente;
 import br.edu.ufersa.todoVet.features.cliente.ClienteRepository;
-import br.edu.ufersa.todoVet.features.pet.dto.PetCreateDTO;
-import br.edu.ufersa.todoVet.features.pet.dto.PetResponseDTO;
-import br.edu.ufersa.todoVet.features.pet.dto.PetUpdateDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetCreateDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetResponseDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetUpdateDTO;
 import br.edu.ufersa.todoVet.shared.exception.EntidadeNaoEncontradaException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.produto.dto;
+package br.edu.ufersa.todoVet.features.produto.dtos;
 
 import br.edu.ufersa.todoVet.features.produto.Produto;
 
