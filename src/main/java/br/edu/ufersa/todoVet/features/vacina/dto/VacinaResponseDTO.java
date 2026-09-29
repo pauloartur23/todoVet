@@ -1,8 +1,10 @@
-package br.edu.ufersa.todoVet.features.vacina;
+package br.edu.ufersa.todoVet.features.vacina.dto;
+
+import br.edu.ufersa.todoVet.features.vacina.Vacina;
 
 import java.time.LocalDate;
 
-public record VacinaResponse(
+public record VacinaResponseDTO(
         Long id,
         Long petId,
         String nome,
@@ -11,8 +13,8 @@ public record VacinaResponse(
         String lote,
         String veterinarioResponsavel
 ) {
-    public static VacinaResponse fromEntity(Vacina vacina) {
-        return new VacinaResponse(
+    public static VacinaResponseDTO fromEntity(Vacina vacina) {
+        return new VacinaResponseDTO(
                 vacina.getId(),
                 vacina.getPetId(),
                 vacina.getNome(),

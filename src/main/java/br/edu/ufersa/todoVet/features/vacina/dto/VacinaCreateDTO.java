@@ -1,10 +1,10 @@
-package br.edu.ufersa.todoVet.features.vacina;
+package br.edu.ufersa.todoVet.features.vacina.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record VacinaCreate(
+public record VacinaCreateDTO(
         @NotBlank(message = "O nome da vacina é obrigatório.")
         String nome,
 

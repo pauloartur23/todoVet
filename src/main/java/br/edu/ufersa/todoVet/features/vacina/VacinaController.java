@@ -2,6 +2,9 @@
 package br.edu.ufersa.todoVet.features.vacina;
 
 
+import br.edu.ufersa.todoVet.features.vacina.dto.VacinaCreateDTO;
+import br.edu.ufersa.todoVet.features.vacina.dto.VacinaPatchDTO;
+import br.edu.ufersa.todoVet.features.vacina.dto.VacinaResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,21 +18,21 @@ import java.util.List;
 public class VacinaController {
 
     @GetMapping
-    public ResponseEntity<List<VacinaResponse>> listarPorPet(@PathVariable Long petId) {
+    public ResponseEntity<List<VacinaResponseDTO>> listarPorPet(@PathVariable Long petId) {
         return null;
     }
 
     @GetMapping("/{vacinaId}")
-    public ResponseEntity<VacinaResponse> buscarPorId(
+    public ResponseEntity<VacinaResponseDTO> buscarPorId(
             @PathVariable Long petId,
             @PathVariable Long vacinaId) {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<VacinaResponse> registrar(
+    public ResponseEntity<VacinaResponseDTO> registrar(
             @PathVariable Long petId,
-            @RequestBody @Valid VacinaCreate dto,
+            @RequestBody @Valid VacinaCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
         URI uri = uriBuilder
@@ -41,10 +44,10 @@ public class VacinaController {
     }
 
     @PatchMapping("/{vacinaId}")
-    public ResponseEntity<VacinaResponse> atualizarProximaDose(
+    public ResponseEntity<VacinaResponseDTO> atualizarProximaDose(
             @PathVariable Long petId,
             @PathVariable Long vacinaId,
-            @RequestBody @Valid VacinaPatch dto) {
+            @RequestBody @Valid VacinaPatchDTO dto) {
         return null;
     }
 
