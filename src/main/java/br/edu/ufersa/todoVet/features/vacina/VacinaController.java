@@ -1,4 +1,3 @@
-
 package br.edu.ufersa.todoVet.features.vacina;
 
 
@@ -17,16 +16,22 @@ import java.util.List;
 @RequestMapping("/api/v1/pets/{petId}/vacinas")
 public class VacinaController {
 
+    private final VacinaApplicationService applicationService;
+
+    public VacinaController(VacinaApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
+
     @GetMapping
     public ResponseEntity<List<VacinaResponseDTO>> listarPorPet(@PathVariable Long petId) {
-        return null;
+        return ResponseEntity.ok(applicationService.listarPorPet(petId));
     }
 
     @GetMapping("/{vacinaId}")
     public ResponseEntity<VacinaResponseDTO> buscarPorId(
             @PathVariable Long petId,
             @PathVariable Long vacinaId) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorId(petId, vacinaId));
     }
 
     @PostMapping
@@ -35,12 +40,14 @@ public class VacinaController {
             @RequestBody @Valid VacinaCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
+        VacinaResponseDTO salva = applicationService.registrar(petId, dto);
+
         URI uri = uriBuilder
                 .path("/api/v1/pets/{petId}/vacinas/{vacinaId}")
-                .buildAndExpand(petId, 1L)
+                .buildAndExpand(petId, salva.id())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(null);
+        return ResponseEntity.created(uri).body(salva);
     }
 
     @PatchMapping("/{vacinaId}")
@@ -48,13 +55,14 @@ public class VacinaController {
             @PathVariable Long petId,
             @PathVariable Long vacinaId,
             @RequestBody @Valid VacinaPatchDTO dto) {
-        return null;
+        return ResponseEntity.ok(applicationService.atualizarProximaDose(petId, vacinaId, dto));
     }
 
     @DeleteMapping("/{vacinaId}")
     public ResponseEntity<Void> remover(
             @PathVariable Long petId,
             @PathVariable Long vacinaId) {
+        applicationService.deletar(petId, vacinaId);
         return ResponseEntity.noContent().build();
     }
 }

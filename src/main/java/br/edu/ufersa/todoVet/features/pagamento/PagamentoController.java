@@ -1,4 +1,3 @@
-// src/main/java/br/edu/ufersa/todoVet/api/controllers/PagamentoController.java
 package br.edu.ufersa.todoVet.features.pagamento;
 
 
@@ -16,17 +15,23 @@ import java.util.List;
 @RequestMapping("/api/v1/agendamentos/{agendamentoId}/pagamentos")
 public class PagamentoController {
 
+    private final PagamentoApplicationService applicationService;
+
+    public PagamentoController(PagamentoApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
+
     @GetMapping
     public ResponseEntity<List<PagamentoResponseDTO>> listarPorAgendamento(
             @PathVariable Long agendamentoId) {
-        return null;
+        return ResponseEntity.ok(applicationService.listarPorAgendamento(agendamentoId));
     }
 
     @GetMapping("/{pagamentoId}")
     public ResponseEntity<PagamentoResponseDTO> buscarPorId(
             @PathVariable Long agendamentoId,
             @PathVariable Long pagamentoId) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorId(agendamentoId, pagamentoId));
     }
 
     @PostMapping
@@ -35,18 +40,21 @@ public class PagamentoController {
             @RequestBody @Valid PagamentoCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
+        PagamentoResponseDTO salvo = applicationService.registrar(agendamentoId, dto);
+
         URI uri = uriBuilder
                 .path("/api/v1/agendamentos/{agendamentoId}/pagamentos/{pagamentoId}")
-                .buildAndExpand(agendamentoId, 1L)
+                .buildAndExpand(agendamentoId, salvo.id())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(null);
+        return ResponseEntity.created(uri).body(salvo);
     }
 
     @DeleteMapping("/{pagamentoId}")
     public ResponseEntity<Void> estornar(
             @PathVariable Long agendamentoId,
             @PathVariable Long pagamentoId) {
+        applicationService.estornar(agendamentoId, pagamentoId);
         return ResponseEntity.noContent().build();
     }
 }

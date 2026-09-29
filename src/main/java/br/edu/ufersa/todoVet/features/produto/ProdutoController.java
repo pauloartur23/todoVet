@@ -1,4 +1,3 @@
-
 package br.edu.ufersa.todoVet.features.produto;
 
 
@@ -17,15 +16,24 @@ import java.util.List;
 @RequestMapping("/api/v1/produtos")
 public class ProdutoController {
 
+    private final ProdutoApplicationService applicationService;
+
+    public ProdutoController(ProdutoApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
+
     @GetMapping
     public ResponseEntity<List<ProdutoResponseDTO>> listar(
             @RequestParam(required = false) String nome) {
-        return null;
+        if (nome != null && !nome.isBlank()) {
+            return ResponseEntity.ok(applicationService.buscarPorNome(nome));
+        }
+        return ResponseEntity.ok(applicationService.listarTodos());
     }
 
     @GetMapping("/{produtoId}")
     public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long produtoId) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorId(produtoId));
     }
 
     @PostMapping
@@ -33,23 +41,26 @@ public class ProdutoController {
             @RequestBody @Valid ProdutoCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
+        ProdutoResponseDTO salvo = applicationService.criar(dto);
+
         URI uri = uriBuilder
                 .path("/api/v1/produtos/{produtoId}")
-                .buildAndExpand(1L)
+                .buildAndExpand(salvo.id())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(null);
+        return ResponseEntity.created(uri).body(salvo);
     }
 
     @PutMapping("/{produtoId}")
     public ResponseEntity<ProdutoResponseDTO> atualizar(
             @PathVariable Long produtoId,
             @RequestBody @Valid ProdutoUpdateDTO dto) {
-        return null;
+        return ResponseEntity.ok(applicationService.atualizar(produtoId, dto));
     }
 
     @DeleteMapping("/{produtoId}")
     public ResponseEntity<Void> remover(@PathVariable Long produtoId) {
+        applicationService.deletar(produtoId);
         return ResponseEntity.noContent().build();
     }
 }
