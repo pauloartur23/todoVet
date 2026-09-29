@@ -1,8 +1,8 @@
 package br.edu.ufersa.todoVet.features.pet;
 
-import br.edu.ufersa.todoVet.features.pet.dto.PetCreateDTO;
-import br.edu.ufersa.todoVet.features.pet.dto.PetResponseDTO;
-import br.edu.ufersa.todoVet.features.pet.dto.PetUpdateDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetCreateDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetResponseDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetUpdateDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

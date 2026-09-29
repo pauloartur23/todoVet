@@ -2,9 +2,9 @@
 package br.edu.ufersa.todoVet.features.produto;
 
 
-import br.edu.ufersa.todoVet.features.produto.dto.ProdutoCreateDTO;
-import br.edu.ufersa.todoVet.features.produto.dto.ProdutoResponseDTO;
-import br.edu.ufersa.todoVet.features.produto.dto.ProdutoUpdateDTO;
+import br.edu.ufersa.todoVet.features.produto.dtos.ProdutoCreateDTO;
+import br.edu.ufersa.todoVet.features.produto.dtos.ProdutoResponseDTO;
+import br.edu.ufersa.todoVet.features.produto.dtos.ProdutoUpdateDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

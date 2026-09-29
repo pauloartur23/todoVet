@@ -1,9 +1,9 @@
 package br.edu.ufersa.todoVet.features.vacina;
 
 import br.edu.ufersa.todoVet.features.pet.PetRepository;
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaCreateDTO;
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaPatchDTO;
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaResponseDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaCreateDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaPatchDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaResponseDTO;
 import br.edu.ufersa.todoVet.shared.exception.EntidadeNaoEncontradaException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

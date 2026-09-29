@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.vacina.dto;
+package br.edu.ufersa.todoVet.features.vacina.dtos;
 
 import br.edu.ufersa.todoVet.features.vacina.Vacina;
 

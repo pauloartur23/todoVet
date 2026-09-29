@@ -2,7 +2,7 @@ package br.edu.ufersa.todoVet.features.cliente;
 
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteRequestDTO;
 import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteResponseDTO;
-import br.edu.ufersa.todoVet.features.pet.dto.PetResponseDTO;
+import br.edu.ufersa.todoVet.features.pet.dtos.PetResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

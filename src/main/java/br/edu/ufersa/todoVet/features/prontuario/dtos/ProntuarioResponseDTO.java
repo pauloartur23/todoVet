@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.prontuario.dto;
+package br.edu.ufersa.todoVet.features.prontuario.dtos;
 
 import br.edu.ufersa.todoVet.features.prontuario.Prontuario;
 import java.time.LocalDateTime;

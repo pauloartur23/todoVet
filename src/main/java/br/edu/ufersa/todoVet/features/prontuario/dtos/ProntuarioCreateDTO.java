@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.features.prontuario.dto;
+package br.edu.ufersa.todoVet.features.prontuario.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

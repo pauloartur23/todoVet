@@ -2,9 +2,9 @@
 package br.edu.ufersa.todoVet.features.vacina;
 
 
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaCreateDTO;
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaPatchDTO;
-import br.edu.ufersa.todoVet.features.vacina.dto.VacinaResponseDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaCreateDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaPatchDTO;
+import br.edu.ufersa.todoVet.features.vacina.dtos.VacinaResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
