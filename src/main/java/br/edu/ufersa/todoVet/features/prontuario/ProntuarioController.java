@@ -1,7 +1,7 @@
 package br.edu.ufersa.todoVet.features.prontuario;
 
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioCreate;
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioResponse;
+import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioCreateDTO;
+import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,21 +21,21 @@ public class ProntuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProntuarioResponse>> listarPorPet(@PathVariable Long petId) {
+    public ResponseEntity<List<ProntuarioResponseDTO>> listarPorPet(@PathVariable Long petId) {
         return ResponseEntity.ok(applicationService.listarPorPet(petId));
     }
 
     @GetMapping("/{prontuarioId}")
-    public ResponseEntity<ProntuarioResponse> buscarPorId(@PathVariable Long petId,
-                                                          @PathVariable Long prontuarioId) {
+    public ResponseEntity<ProntuarioResponseDTO> buscarPorId(@PathVariable Long petId,
+                                                             @PathVariable Long prontuarioId) {
         return ResponseEntity.ok(applicationService.buscarPorId(petId, prontuarioId));
     }
 
     @PostMapping
-    public ResponseEntity<ProntuarioResponse> registrar(@PathVariable Long petId,
-                                                        @RequestBody @Valid ProntuarioCreate dto,
-                                                        UriComponentsBuilder uriBuilder) {
-        ProntuarioResponse response = applicationService.registrar(petId, dto);
+    public ResponseEntity<ProntuarioResponseDTO> registrar(@PathVariable Long petId,
+                                                           @RequestBody @Valid ProntuarioCreateDTO dto,
+                                                           UriComponentsBuilder uriBuilder) {
+        ProntuarioResponseDTO response = applicationService.registrar(petId, dto);
         URI uri = uriBuilder
                 .path("/api/v1/pets/{petId}/prontuarios/{prontuarioId}")
                 .buildAndExpand(petId, response.id())

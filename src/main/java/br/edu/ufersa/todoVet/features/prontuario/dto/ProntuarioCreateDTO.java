@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-public record ProntuarioCreate(
+public record ProntuarioCreateDTO(
         @NotNull(message = "O identificador do funcionário veterinário é obrigatório.")
         @Positive(message = "ID do veterinário inválido.")
         Long veterinarioId,

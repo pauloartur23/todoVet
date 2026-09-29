@@ -3,7 +3,7 @@ package br.edu.ufersa.todoVet.features.pet.dto;
 import br.edu.ufersa.todoVet.features.pet.Pet;
 import java.time.LocalDate;
 
-public record PetResponse(
+public record PetResponseDTO(
         Long id,
         Long clienteId,
         String nome,
@@ -11,8 +11,8 @@ public record PetResponse(
         String raca,
         LocalDate dataNascimento
 ) {
-    public static PetResponse fromEntity(Pet pet) {
-        return new PetResponse(
+    public static PetResponseDTO fromEntity(Pet pet) {
+        return new PetResponseDTO(
                 pet.getId(),
                 pet.getCliente().getId(),
                 pet.getNome(),

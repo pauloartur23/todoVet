@@ -3,7 +3,7 @@ package br.edu.ufersa.todoVet.features.prontuario.dto;
 import br.edu.ufersa.todoVet.features.prontuario.Prontuario;
 import java.time.LocalDateTime;
 
-public record ProntuarioResponse(
+public record ProntuarioResponseDTO(
         Long id,
         Long petId,
         Long veterinarioId,
@@ -11,8 +11,8 @@ public record ProntuarioResponse(
         String descricao,
         String prescricao
 ) {
-    public static ProntuarioResponse fromEntity(Prontuario p) {
-        return new ProntuarioResponse(
+    public static ProntuarioResponseDTO fromEntity(Prontuario p) {
+        return new ProntuarioResponseDTO(
                 p.getId(),
                 p.getPet().getId(),
                 p.getVeterinario().getId(),

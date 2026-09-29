@@ -4,8 +4,8 @@ import br.edu.ufersa.todoVet.features.funcionario.Funcionario;
 import br.edu.ufersa.todoVet.features.funcionario.FuncionarioRepository;
 import br.edu.ufersa.todoVet.features.pet.Pet;
 import br.edu.ufersa.todoVet.features.pet.PetRepository;
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioCreate;
-import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioResponse;
+import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioCreateDTO;
+import br.edu.ufersa.todoVet.features.prontuario.dto.ProntuarioResponseDTO;
 import br.edu.ufersa.todoVet.shared.exception.EntidadeNaoEncontradaException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,26 +31,26 @@ public class ProntuarioApplicationService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProntuarioResponse> listarPorPet(Long petId) {
+    public List<ProntuarioResponseDTO> listarPorPet(Long petId) {
         if (!petRepository.existsById(petId)) {
             throw new EntidadeNaoEncontradaException("Pet não encontrado para o ID: " + petId);
         }
         return prontuarioRepository.findByPetIdOrderByDataRegistroDesc(petId)
                 .stream()
-                .map(ProntuarioResponse::fromEntity)
+                .map(ProntuarioResponseDTO::fromEntity)
                 .toList();
     }
 
     @Transactional(readOnly = true)
-    public ProntuarioResponse buscarPorId(Long petId, Long prontuarioId) {
+    public ProntuarioResponseDTO buscarPorId(Long petId, Long prontuarioId) {
         return prontuarioRepository.findByIdAndPetId(prontuarioId, petId)
-                .map(ProntuarioResponse::fromEntity)
+                .map(ProntuarioResponseDTO::fromEntity)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException(
                         "Prontuário ID " + prontuarioId + " não encontrado para o Pet ID " + petId));
     }
 
     @Transactional
-    public ProntuarioResponse registrar(Long petId, ProntuarioCreate dto) {
+    public ProntuarioResponseDTO registrar(Long petId, ProntuarioCreateDTO dto) {
         Pet pet = petRepository.findById(petId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Pet não encontrado para o ID: " + petId));
 
@@ -60,6 +60,6 @@ public class ProntuarioApplicationService {
         domainService.validarResponsavel(funcionario);
 
         Prontuario prontuario = new Prontuario(pet, funcionario, dto.descricao(), dto.prescricao());
-        return ProntuarioResponse.fromEntity(prontuarioRepository.save(prontuario));
+        return ProntuarioResponseDTO.fromEntity(prontuarioRepository.save(prontuario));
     }
 }
