@@ -32,7 +32,7 @@ public class Pet {
     protected Pet() {}
 
     public Pet(Cliente cliente, String nome, String especie, String raca, LocalDate dataNascimento) {
-        this.cliente = Objects.requireNonNull(cliente, "O cliente/tutor é obrigatório.");
+        this.cliente = Objects.requireNonNull(cliente, "O cliente responsável é obrigatório.");
         this.nome = Objects.requireNonNull(nome, "O nome do pet é obrigatório.");
         this.especie = Objects.requireNonNull(especie, "A espécie é obrigatória.");
         this.raca = raca;

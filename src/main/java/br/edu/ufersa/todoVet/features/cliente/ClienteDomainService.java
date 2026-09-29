@@ -1,20 +1,20 @@
 package br.edu.ufersa.todoVet.features.cliente;
 
 import br.edu.ufersa.todoVet.features.auth.Email;
+import br.edu.ufersa.todoVet.features.pet.PetRepository;
 import br.edu.ufersa.todoVet.shared.exception.ConflitoException;
+import br.edu.ufersa.todoVet.shared.exception.OperacaoInvalidaException;
 import org.springframework.stereotype.Service;
 
-/**
- * Regras de negócio de Cliente que não pertencem naturalmente à entidade,
- * como a verificação de duplicidade de e-mail no cadastro.
- */
 @Service
 public class ClienteDomainService {
 
     private final ClienteRepository clienteRepository;
+    private final PetRepository petRepository;
 
-    public ClienteDomainService(ClienteRepository clienteRepository) {
+    public ClienteDomainService(ClienteRepository clienteRepository, PetRepository petRepository) {
         this.clienteRepository = clienteRepository;
+        this.petRepository = petRepository;
     }
 
     public void validarEmailDisponivel(Email email) {
@@ -22,20 +22,18 @@ public class ClienteDomainService {
             throw new ConflitoException("E-mail já cadastrado no sistema.");
         }
     }
+
+    public void validarEmailDisponivelParaAtualizacao(Long clienteId, Email novoEmail) {
+        clienteRepository.findByEmail(novoEmail)
+                .filter(clienteExistente -> !clienteExistente.getId().equals(clienteId))
+                .ifPresent(clienteExistente -> {
+                    throw new ConflitoException("O e-mail informado já está em uso por outro cliente.");
+                });
+    }
+
+    public void validarExclusao(Long clienteId) {
+        if (!petRepository.findByClienteId(clienteId).isEmpty()) {
+            throw new OperacaoInvalidaException("Não é possível remover um cliente que possui pets cadastrados.");
+        }
+    }
 }
-// algumas coisas que precisam de outras entidades prontas para fazer
-// implementar: impedir exclusão de cliente com pets cadastrados.
-// Precisa do PetRepository para checar existsByClienteId(clienteId) antes de excluir.
-// Se existir, lançar OperacaoInvalidaException("Não é possível remover um cliente com pets cadastrados.")
-
-// implementar: impedir exclusão de cliente com agendamentos pendentes (futuros/não concluídos).
-// Precisa do AgendamentoRepository para checar se existe agendamento futuro para o clienteId.
-// Se existir, lançar OperacaoInvalidaException("Não é possível remover um cliente com agendamentos pendentes.")
-
-// implementar: impedir exclusão de cliente com vendas/pagamentos em aberto.
-// Precisa do VendaRepository (ou PagamentoRepository) para checar pendências do clienteId.
-// Se existir, lançar OperacaoInvalidaException("Não é possível remover um cliente com pagamentos pendentes.")
-
-// implementar: definir limite de pets por cliente, se o professor exigir uma regra desse tipo.
-// Precisa do PetRepository para contar quantos pets o cliente já tem antes de cadastrar um novo.
-// Se ultrapassar o limite, lançar OperacaoInvalidaException("Cliente atingiu o limite de pets permitido.")
