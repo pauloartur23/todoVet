@@ -1,5 +1,7 @@
 package br.edu.ufersa.todoVet.features.funcionario;
 
+import br.edu.ufersa.todoVet.features.funcionario.dtos.FuncionarioUpdateDTO;
+import br.edu.ufersa.todoVet.features.funcionario.dtos.FuncionarioResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class FuncionarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FuncionarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioRequestDTO usuarioAtualizado) {
+    public ResponseEntity<FuncionarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioUpdateDTO usuarioAtualizado) {
         return null;
     }
 

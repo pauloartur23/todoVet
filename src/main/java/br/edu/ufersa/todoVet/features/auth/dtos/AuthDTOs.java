@@ -1,6 +1,7 @@
 package br.edu.ufersa.todoVet.features.auth.dtos;
 
 import br.edu.ufersa.todoVet.features.auth.UserRole;
+import br.edu.ufersa.todoVet.features.funcionario.Cargo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,8 +26,8 @@ public interface AuthDTOs {
             String password,
             @NotBlank(message = "O telefone é obrigatório")
             String telefone,
-            @NotBlank(message = "O cargo é obrigatório")
-            String cargo
+            @NotNull(message = "O cargo é obrigatório")
+            Cargo cargo
     ){}
     public record RegisterAdminRequestDTO(
             @NotBlank(message = "O nome é obrigatório")

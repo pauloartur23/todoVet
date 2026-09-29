@@ -10,23 +10,24 @@ import jakarta.persistence.*;
 @Table(name = "tb_funcionarios")
 public class Funcionario extends Usuario {
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "cargo", nullable = false)
-    private String cargo;
+    private Cargo cargo;
 
     protected Funcionario() {
         super();
     }
 
-    public Funcionario(String nome, Email email, Senha senha, String telefone, String cargo) {
+    public Funcionario(String nome, Email email, Senha senha, String telefone, Cargo cargo) {
         super(nome, email, senha, telefone, UserRole.USER);
         this.cargo = cargo;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void atualizarCargo(String cargo) {
+    public void atualizarCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 }
