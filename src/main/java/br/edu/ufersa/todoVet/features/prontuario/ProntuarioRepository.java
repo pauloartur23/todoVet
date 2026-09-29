@@ -1,6 +1,5 @@
-package br.edu.ufersa.todoVet.domain.repositories;
+package br.edu.ufersa.todoVet.features.prontuario;
 
-import br.edu.ufersa.todoVet.domain.entities.Prontuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
