@@ -1,4 +1,4 @@
-package br.edu.ufersa.todoVet.api.dtos.pet;
+package br.edu.ufersa.todoVet.features.pet.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -10,6 +10,7 @@ public record PetUpdate(
         @Size(min = 2, max = 80, message = "O nome deve ter entre 2 e 80 caracteres.")
         String nome,
 
+        @Size(max = 60, message = "A raça deve ter no máximo 60 caracteres.")
         String raca,
 
         @PastOrPresent(message = "A data de nascimento não pode ser no futuro.")

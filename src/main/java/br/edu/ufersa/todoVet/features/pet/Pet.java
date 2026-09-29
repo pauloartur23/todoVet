@@ -1,5 +1,6 @@
 package br.edu.ufersa.todoVet.features.pet;
 
+import br.edu.ufersa.todoVet.features.cliente.Cliente;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -25,13 +26,13 @@ public class Pet {
     private LocalDate dataNascimento;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_tutor", nullable = false)
-    private Tutor tutor;
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Cliente cliente;
 
     protected Pet() {}
 
-    public Pet(Tutor tutor, String nome, String especie, String raca, LocalDate dataNascimento) {
-        this.tutor = Objects.requireNonNull(tutor, "O tutor é obrigatório para registrar um pet.");
+    public Pet(Cliente cliente, String nome, String especie, String raca, LocalDate dataNascimento) {
+        this.cliente = Objects.requireNonNull(cliente, "O cliente/tutor é obrigatório.");
         this.nome = Objects.requireNonNull(nome, "O nome do pet é obrigatório.");
         this.especie = Objects.requireNonNull(especie, "A espécie é obrigatória.");
         this.raca = raca;
@@ -49,5 +50,5 @@ public class Pet {
     public String getEspecie() { return especie; }
     public String getRaca() { return raca; }
     public LocalDate getDataNascimento() { return dataNascimento; }
-    public Tutor getTutor() { return tutor; }
+    public Cliente getCliente() { return cliente; }
 }
