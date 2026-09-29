@@ -1,30 +1,45 @@
 package br.edu.ufersa.todoVet.features.venda;
-import br.edu.ufersa.todoVet.features.VendaRequestDTO;
-import br.edu.ufersa.todoVet.features.VendaResponseDTO;
+
+import br.edu.ufersa.todoVet.features.venda.VendaRequestDTO;
+import br.edu.ufersa.todoVet.features.venda.VendaResponseDTO;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/vendas")
+@RequestMapping("/api/v1/vendas")
 public class VendaController {
+
+    private final VendaApplicationService applicationService;
+
+    public VendaController(VendaApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
+
     @GetMapping
     public ResponseEntity<List<VendaResponseDTO>> listarTodas() {
-        return null;
+        return ResponseEntity.ok(applicationService.listarTodas());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<VendaResponseDTO> buscarPorId(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(applicationService.buscarPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<VendaResponseDTO> registrar(@RequestBody @Valid VendaRequestDTO novaVenda) {
-        return null;
+    public ResponseEntity<VendaResponseDTO> registrar(@RequestBody @Valid VendaRequestDTO novaVenda,
+                                                      UriComponentsBuilder uriBuilder) {
+        VendaResponseDTO response = applicationService.registrar(novaVenda);
+        URI uri = uriBuilder.path("/api/v1/vendas/{id}").buildAndExpand(response.id()).toUri();
+        return ResponseEntity.created(uri).body(response);
     }
 
-    //Hierarquia RESTful - vendas pertencem ao cliente
     @GetMapping("/clientes/{clienteId}")
     public ResponseEntity<List<VendaResponseDTO>> listarPorCliente(@PathVariable Long clienteId) {
-        return null;
+        return ResponseEntity.ok(applicationService.listarPorCliente(clienteId));
     }
 }
