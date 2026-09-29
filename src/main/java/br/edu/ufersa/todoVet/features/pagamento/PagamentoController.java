@@ -2,6 +2,8 @@
 package br.edu.ufersa.todoVet.features.pagamento;
 
 
+import br.edu.ufersa.todoVet.features.pagamento.dto.PagamentoCreateDTO;
+import br.edu.ufersa.todoVet.features.pagamento.dto.PagamentoResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,22 +17,22 @@ import java.util.List;
 public class PagamentoController {
 
     @GetMapping
-    public ResponseEntity<List<PagamentoResponse>> listarPorAgendamento(
+    public ResponseEntity<List<PagamentoResponseDTO>> listarPorAgendamento(
             @PathVariable Long agendamentoId) {
         return null;
     }
 
     @GetMapping("/{pagamentoId}")
-    public ResponseEntity<PagamentoResponse> buscarPorId(
+    public ResponseEntity<PagamentoResponseDTO> buscarPorId(
             @PathVariable Long agendamentoId,
             @PathVariable Long pagamentoId) {
         return null;
     }
 
     @PostMapping
-    public ResponseEntity<PagamentoResponse> registrar(
+    public ResponseEntity<PagamentoResponseDTO> registrar(
             @PathVariable Long agendamentoId,
-            @RequestBody @Valid PagamentoCreate dto,
+            @RequestBody @Valid PagamentoCreateDTO dto,
             UriComponentsBuilder uriBuilder) {
 
         URI uri = uriBuilder
