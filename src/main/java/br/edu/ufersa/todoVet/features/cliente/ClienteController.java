@@ -1,5 +1,7 @@
 package br.edu.ufersa.todoVet.features.cliente;
 
+import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteRequestDTO;
+import br.edu.ufersa.todoVet.features.cliente.dtos.ClienteResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

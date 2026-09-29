@@ -1,6 +1,6 @@
 package br.edu.ufersa.todoVet.features.cliente;
 
-import br.edu.ufersa.todoVet.features.auth.Usuario;
+import br.edu.ufersa.todoVet.features.auth.Email;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,8 +14,8 @@ public class Cliente {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @Embedded
+    private Email email;
 
     @Column(name = "telefone")
     private String telefone;
@@ -25,7 +25,7 @@ public class Cliente {
 
     protected Cliente() {}
 
-    public Cliente(String nome, String email, String telefone, String endereco) {
+    public Cliente(String nome, Email email, String telefone, String endereco) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -40,7 +40,7 @@ public class Cliente {
         return nome;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
@@ -52,7 +52,7 @@ public class Cliente {
         return endereco;
     }
 
-    public void atualizarDadosCadastrais(String nome, String email, String telefone, String endereco) {
+    public void atualizarDadosCadastrais(String nome, Email email, String telefone, String endereco) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
