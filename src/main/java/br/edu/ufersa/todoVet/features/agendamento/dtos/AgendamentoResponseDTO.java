@@ -1,9 +1,9 @@
-package br.edu.ufersa.todoVet.features.agendamento;
+package br.edu.ufersa.todoVet.features.agendamento.dtos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record AgendamentoResponse(
+public record AgendamentoResponseDTO(
         Long id,
         Long petId,
         String petNome,

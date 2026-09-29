@@ -1,7 +1,7 @@
 package br.edu.ufersa.todoVet.features.agendamento;
 
-import br.edu.ufersa.todoVet.features.agendamento.AgendamentoCreate;
-import br.edu.ufersa.todoVet.features.agendamento.AgendamentoResponse;
+import br.edu.ufersa.todoVet.features.agendamento.dtos.AgendamentoCreateDTO;
+import br.edu.ufersa.todoVet.features.agendamento.dtos.AgendamentoResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,20 +22,20 @@ public class AgendamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AgendamentoResponse>> listarPorData(
+    public ResponseEntity<List<AgendamentoResponseDTO>> listarPorData(
             @RequestParam(required = false) LocalDate data) {
         return ResponseEntity.ok(applicationService.listarPorData(data));
     }
 
     @GetMapping("/{agendamentoId}")
-    public ResponseEntity<AgendamentoResponse> buscarPorId(@PathVariable Long agendamentoId) {
+    public ResponseEntity<AgendamentoResponseDTO> buscarPorId(@PathVariable Long agendamentoId) {
         return ResponseEntity.ok(applicationService.buscarPorId(agendamentoId));
     }
 
     @PostMapping
-    public ResponseEntity<AgendamentoResponse> agendar(@RequestBody @Valid AgendamentoCreate dto,
-                                                       UriComponentsBuilder uriBuilder) {
-        AgendamentoResponse response = applicationService.agendar(dto);
+    public ResponseEntity<AgendamentoResponseDTO> agendar(@RequestBody @Valid AgendamentoCreateDTO dto,
+                                                          UriComponentsBuilder uriBuilder) {
+        AgendamentoResponseDTO response = applicationService.agendar(dto);
         URI uri = uriBuilder.path("/api/v1/agendamentos/{agendamentoId}").buildAndExpand(response.id()).toUri();
         return ResponseEntity.created(uri).body(response);
     }

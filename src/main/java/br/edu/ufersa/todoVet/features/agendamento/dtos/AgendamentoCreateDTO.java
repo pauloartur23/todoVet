@@ -1,11 +1,11 @@
-package br.edu.ufersa.todoVet.features.agendamento;
+package br.edu.ufersa.todoVet.features.agendamento.dtos;
 
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record AgendamentoCreate(
+public record AgendamentoCreateDTO(
         @NotNull(message = "O ID do pet é obrigatório.")
         @Positive(message = "ID do pet inválido.")
         Long petId,

@@ -1,7 +1,7 @@
 package br.edu.ufersa.todoVet.features.venda;
 
-import br.edu.ufersa.todoVet.features.venda.VendaRequestDTO;
-import br.edu.ufersa.todoVet.features.venda.VendaResponseDTO;
+import br.edu.ufersa.todoVet.features.venda.dtos.VendaRequestDTO;
+import br.edu.ufersa.todoVet.features.venda.dtos.VendaResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

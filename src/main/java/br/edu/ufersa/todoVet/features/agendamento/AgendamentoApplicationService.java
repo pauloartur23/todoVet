@@ -1,7 +1,7 @@
 package br.edu.ufersa.todoVet.features.agendamento;
 
-import br.edu.ufersa.todoVet.features.agendamento.AgendamentoCreate;
-import br.edu.ufersa.todoVet.features.agendamento.AgendamentoResponse;
+import br.edu.ufersa.todoVet.features.agendamento.dtos.AgendamentoCreateDTO;
+import br.edu.ufersa.todoVet.features.agendamento.dtos.AgendamentoResponseDTO;
 import br.edu.ufersa.todoVet.features.funcionario.Funcionario;
 import br.edu.ufersa.todoVet.features.funcionario.FuncionarioRepository;
 import br.edu.ufersa.todoVet.features.pet.Pet;
@@ -32,7 +32,7 @@ public class AgendamentoApplicationService {
     }
 
     @Transactional(readOnly = true)
-    public List<AgendamentoResponse> listarPorData(LocalDate data) {
+    public List<AgendamentoResponseDTO> listarPorData(LocalDate data) {
         List<Agendamento> agendamentos = data != null
                 ? agendamentoRepository.findByData(data)
                 : agendamentoRepository.findAll();
@@ -40,14 +40,14 @@ public class AgendamentoApplicationService {
     }
 
     @Transactional(readOnly = true)
-    public AgendamentoResponse buscarPorId(Long id) {
+    public AgendamentoResponseDTO buscarPorId(Long id) {
         return agendamentoRepository.findById(id)
                 .map(this::toResponse)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Agendamento não encontrado para o ID: " + id));
     }
 
     @Transactional
-    public AgendamentoResponse agendar(AgendamentoCreate dto) {
+    public AgendamentoResponseDTO agendar(AgendamentoCreateDTO dto) {
         Pet pet = petRepository.findById(dto.petId())
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Pet não encontrado para o ID: " + dto.petId()));
 
@@ -67,8 +67,8 @@ public class AgendamentoApplicationService {
         agendamento.cancelar();
     }
 
-    private AgendamentoResponse toResponse(Agendamento a) {
-        return new AgendamentoResponse(
+    private AgendamentoResponseDTO toResponse(Agendamento a) {
+        return new AgendamentoResponseDTO(
                 a.getId(),
                 a.getPet().getId(),
                 a.getPet().getNome(),
