@@ -18,7 +18,7 @@ public class TokenService {
                 .withIssuer("todoVet-api")
                 .withSubject(usu.getEmail().endereco())
                 .withClaim("role", usu.getRole().name())
-                .withExpiresAt(Instant.now().plus(20, ChronoUnit.MINUTES))
+                .withExpiresAt(Instant.now().plus(8, ChronoUnit.HOURS))
                 .sign(algorithm);
     }
 
