@@ -1,3 +1,12 @@
+:root {
+  --verde: #2e9e6b;
+  --verde-escuro: #237a53;
+  --azul: #2563a8;
+  --fundo: #f4f8f6;
+  --texto: #1f2937;
+  --borda: #d1d9d5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +15,6 @@
 
 body {
   font-family: system-ui, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
 }

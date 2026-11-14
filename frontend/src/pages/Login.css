@@ -1,0 +1,63 @@
+.login-pagina {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: white;
+    width: 100%;
+    max-width: 380px;
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
+}
+
+.login-card h1 {
+    color: var(--verde);
+    margin-bottom: 4px;
+}
+
+.login-subtitulo {
+    color: #6b7280;
+    margin-bottom: 24px;
+}
+
+.login-campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.login-campo label {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.login-campo input {
+    padding: 10px 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.login-campo input:focus {
+    outline: 2px solid var(--azul);
+    border-color: transparent;
+}
+
+.login-botao {
+    width: 100%;
+    padding: 12px;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-botao:hover {
+    background: var(--verde-escuro);
+}
