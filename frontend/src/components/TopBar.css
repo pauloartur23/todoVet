@@ -1,0 +1,51 @@
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 24px;
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid var(--borda);
+}
+
+.topbar-logo {
+    color: var(--verde);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.topbar-menu {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.topbar-menu a {
+    color: var(--texto);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.topbar-menu a:hover {
+    color: var(--verde);
+}
+
+.topbar-menu a.active {
+    color: var(--verde);
+    border-bottom-color: var(--verde);
+}
+
+.topbar-sair {
+    background: none;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.topbar-sair:hover {
+    border-color: var(--azul);
+    color: var(--azul);
+}

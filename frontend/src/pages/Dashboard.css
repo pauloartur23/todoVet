@@ -1,0 +1,39 @@
+.dashboard-conteudo {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+.dashboard-conteudo h1 {
+    margin-bottom: 4px;
+}
+
+.dashboard-subtitulo {
+    color: #6b7280;
+    margin-bottom: 24px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.dashboard-card {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.dashboard-card-titulo {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.dashboard-card-valor {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--azul);
+}
