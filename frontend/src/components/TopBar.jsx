@@ -1,7 +1,8 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import './Topbar.css';
+import { useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
+import './TopBar.css';
 
-function Topbar() {
+function TopBar() {
     const navigate = useNavigate();
 
     function handleSair() {
@@ -10,17 +11,17 @@ function Topbar() {
 
     return (
         <header className="topbar">
-            <span className="topbar-logo">todoVet</span>
-
-            <nav className="topbar-menu">
-                <NavLink to="/dashboard">Início</NavLink>
-            </nav>
+            <div className="topbar-usuario">
+                <span className="topbar-avatar">MS</span>
+                <span className="topbar-nome">Maria Silva</span>
+            </div>
 
             <button className="topbar-sair" onClick={handleSair}>
+                <LogOut size={18} />
                 Sair
             </button>
         </header>
     );
 }
 
-export default Topbar;
+export default TopBar;

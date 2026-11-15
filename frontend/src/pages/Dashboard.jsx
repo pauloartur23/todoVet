@@ -1,4 +1,3 @@
-import Topbar from '../components/Topbar.jsx';
 import './Dashboard.css';
 
 const resumo = [
@@ -9,22 +8,19 @@ const resumo = [
 
 function Dashboard() {
     return (
-        <div>
-            <Topbar />
-            <main className="dashboard-conteudo">
-                <h1>Painel</h1>
-                <p className="dashboard-subtitulo">Resumo do dia na clínica</p>
+        <>
+            <h1>Painel</h1>
+            <p className="dashboard-subtitulo">Resumo do dia na clínica</p>
 
-                <div className="dashboard-cards">
-                    {resumo.map((item) => (
-                        <div key={item.titulo} className="dashboard-card">
-                            <p className="dashboard-card-titulo">{item.titulo}</p>
-                            <p className="dashboard-card-valor">{item.valor}</p>
-                        </div>
-                    ))}
-                </div>
-            </main>
-        </div>
+            <div className="dashboard-cards">
+                {resumo.map((item) => (
+                    <div key={item.titulo} className="dashboard-card">
+                        <p className="dashboard-card-titulo">{item.titulo}</p>
+                        <p className="dashboard-card-valor">{item.valor}</p>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 }
 

@@ -1,10 +1,16 @@
 :root {
   --verde: #2e9e6b;
   --verde-escuro: #237a53;
+  --verde-claro: #e6f4ee;
   --azul: #2563a8;
-  --fundo: #f4f8f6;
+  --vermelho: #e5484d;
+  --laranja: #e8890c;
+  --roxo: #7c4dbd;
+  --fundo: #f5f7f9;
   --texto: #1f2937;
-  --borda: #d1d9d5;
+  --texto-suave: #6b7280;
+  --borda: #e3e8ec;
+  --sombra: 0 1px 3px rgba(16, 24, 40, 0.08);
 }
 
 * {
