@@ -4,8 +4,8 @@ import {
     listarPagamentos,
     cadastrarPagamento,
     marcarComoPago,
-} from '../services/pagamentoService.js';
-import './Tela.css';
+} from '../../services/pagamentoService.js';
+import '../Tela.css';
 
 const formVazio = {
     cliente: '',

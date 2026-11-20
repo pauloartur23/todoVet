@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
-import { listarVacinas, cadastrarVacina } from '../services/vacinaService.js';
-import './Tela.css';
+import { listarVacinas, cadastrarVacina } from '../../services/vacinaService.js';
+import '../Tela.css';
 
 const formVazio = {
     pet: '',

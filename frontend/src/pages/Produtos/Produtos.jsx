@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
-import { listarProdutos, cadastrarProduto } from '../services/produtoService.js';
-import './Tela.css';
+import { listarProdutos, cadastrarProduto } from '../../services/produtoService.js';
+import '../Tela.css';
 
 const formVazio = {
     nome: '',
