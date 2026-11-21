@@ -1,0 +1,37 @@
+.grafico {
+    display: flex;
+    gap: 12px;
+}
+
+.grafico-coluna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.grafico-valor,
+.grafico-rotulo {
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.grafico-area {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.grafico-barra {
+    width: 100%;
+    max-width: 44px;
+    min-height: 4px;
+    background: #cfe8dc;
+    border-radius: 8px 8px 0 0;
+}
+
+.grafico-barra.destaque {
+    background: var(--verde);
+}

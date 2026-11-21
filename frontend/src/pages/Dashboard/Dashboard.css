@@ -1,0 +1,166 @@
+.dashboard-cabecalho {
+    margin-bottom: 24px;
+}
+
+.dashboard-data {
+    color: var(--texto-suave);
+    margin-top: 4px;
+}
+
+.dashboard-data::first-letter {
+    text-transform: uppercase;
+}
+
+.dashboard-indicadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.dashboard-grade {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grade {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dashboard-painel {
+    min-width: 0;
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+    padding: 20px;
+}
+
+.dashboard-painel h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dashboard-painel-sub {
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin-bottom: 16px;
+}
+
+.alerta-lista {
+    list-style: none;
+}
+
+.alerta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    margin: 0 -8px;
+    border-radius: 10px;
+    color: var(--texto);
+    text-decoration: none;
+}
+
+.alerta-item:hover {
+    background: var(--fundo);
+}
+
+.alerta-texto {
+    flex: 1;
+    font-size: 15px;
+}
+
+.alerta-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.alerta-roxo {
+    background: #f1eafa;
+    color: var(--roxo);
+}
+
+.alerta-laranja {
+    background: #fff4e0;
+    color: #9a5b00;
+}
+
+.alerta-vermelho {
+    background: #fdecec;
+    color: #b42318;
+}
+
+.agenda-lista {
+    list-style: none;
+}
+
+.agenda-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.agenda-item:last-child {
+    border-bottom: none;
+}
+
+.agenda-hora {
+    width: 52px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.agenda-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.agenda-pet {
+    font-weight: 600;
+}
+
+.agenda-tutor {
+    font-weight: 400;
+    color: var(--texto-suave);
+}
+
+.agenda-servico {
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+.agenda-selo {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.agenda-selo-confirmado {
+    background: var(--verde-claro);
+    color: var(--verde-escuro);
+}
+
+.agenda-selo-andamento {
+    background: #e6eef8;
+    color: var(--azul);
+}
+
+.agenda-selo-aguardando {
+    background: #fff4e0;
+    color: #9a5b00;
+}
