@@ -1,32 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import {
-    LayoutDashboard,
-    CalendarDays,
-    Users,
-    PawPrint,
-    FileText,
-    Syringe,
-    Package,
-    ShoppingCart,
-    CreditCard,
-    UserCog,
-} from 'lucide-react';
+import { PawPrint } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext.js';
+import { menuDoPerfil } from '../config/menu.js';
 import './Sidebar.css';
 
-const menu = [
-    { texto: 'Início', caminho: '/dashboard', Icone: LayoutDashboard },
-    { texto: 'Agendamentos', caminho: '/agendamentos', Icone: CalendarDays },
-    { texto: 'Clientes', caminho: '/clientes', Icone: Users },
-    { texto: 'Pets', caminho: '/pets', Icone: PawPrint },
-    { texto: 'Prontuários', caminho: '/prontuarios', Icone: FileText },
-    { texto: 'Vacinas', caminho: '/vacinas', Icone: Syringe },
-    { texto: 'Produtos', caminho: '/produtos', Icone: Package },
-    { texto: 'Vendas', caminho: '/vendas', Icone: ShoppingCart },
-    { texto: 'Pagamentos', caminho: '/pagamentos', Icone: CreditCard },
-    { texto: 'Funcionários', caminho: '/funcionarios', Icone: UserCog },
-];
-
 function Sidebar() {
+    const { usuario } = useAuth();
+    const itens = usuario ? menuDoPerfil(usuario.perfil) : [];
+
     return (
         <aside className="sidebar">
             <div className="sidebar-logo">
@@ -35,7 +16,7 @@ function Sidebar() {
             </div>
 
             <nav className="sidebar-menu">
-                {menu.map(({ texto, caminho, Icone }) => (
+                {itens.map(({ texto, caminho, Icone }) => (
                     <NavLink key={caminho} to={caminho} title={texto}>
                         <Icone size={20} />
                         <span className="sidebar-texto">{texto}</span>
