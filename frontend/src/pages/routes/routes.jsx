@@ -7,6 +7,7 @@ import Produtos from '../Produtos/Produtos.jsx';
 import Vacinas from '../Vacinas/Vacinas.jsx';
 import Pagamentos from '../Pagamento/Pagamentos.jsx';
 import Funcionarios from "../Funcionarios/Funcionarios.jsx";
+import Clientes from "../Clientes/Clientes.jsx";
 
 function PaginaNaoEncontrada() {
     return (
@@ -28,7 +29,7 @@ export default function Rotas() {
                 <Route element={<Layout />}>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/agendamentos" element={<Pagina titulo="Agendamentos" />} />
-                    <Route path="/clientes" element={<Pagina titulo="Clientes" />} />
+                    <Route path="/clientes" element={<Clientes />} />
                     <Route path="/pets" element={<Pagina titulo="Pets" />} />
                     <Route path="/prontuarios" element={<Pagina titulo="Prontuários" />} />
                     <Route path="/vacinas" element={<Vacinas />} />

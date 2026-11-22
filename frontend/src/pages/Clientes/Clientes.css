@@ -1,0 +1,40 @@
+/* Cards de filtro: título colorido e fundo cheio quando ativo */
+.tela-filtro-compets .tela-filtro-titulo {
+    color: var(--verde);
+}
+
+.tela-filtro-sempets .tela-filtro-titulo {
+    color: var(--laranja);
+}
+
+.tela-filtro-compets.ativo {
+    background: var(--verde);
+}
+
+.tela-filtro-sempets.ativo {
+    background: var(--laranja);
+}
+
+/* Pets na tabela e no pop-up de detalhes */
+.cliente-pets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+}
+
+.cliente-pets li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.cliente-pet-info {
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+.cliente-sem-pets {
+    color: var(--texto-suave);
+}
