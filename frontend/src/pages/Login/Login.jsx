@@ -1,15 +1,26 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext.js';
 import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [erro, setErro] = useState('');
+    const { login } = useAuth();
     const navigate = useNavigate();
 
-    function handleSubmit(evento) {
+    async function handleSubmit(evento) {
         evento.preventDefault();
-        console.log('Tentando entrar com o e-mail:', email);
+        setErro('');
+
+        const usuario = await login(email, senha);
+
+        if (!usuario) {
+            setErro('E-mail ou senha incorretos.');
+            return;
+        }
+
         navigate('/dashboard');
     }
 
@@ -18,6 +29,8 @@ function Login() {
             <form className="login-card" onSubmit={handleSubmit}>
                 <h1>todoVet</h1>
                 <p className="login-subtitulo">Entre na sua conta</p>
+
+                {erro && <p className="login-erro">{erro}</p>}
 
                 <div className="login-campo">
                     <label htmlFor="email">E-mail</label>
@@ -44,6 +57,11 @@ function Login() {
                 <button type="submit" className="login-botao">
                     Entrar
                 </button>
+
+                <div className="login-dica">
+                    <p>Contas de teste (senha 123456):</p>
+                    <p>admin@todovet.com · recepcao@todovet.com</p>
+                </div>
             </form>
         </div>
     );

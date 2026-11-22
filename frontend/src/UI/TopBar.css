@@ -45,6 +45,17 @@
     color: var(--texto);
 }
 
+.topbar-dados {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.topbar-perfil {
+    font-size: 12px;
+    color: var(--texto-suave);
+}
+
 .topbar-sair:hover {
     border-color: var(--vermelho);
     color: var(--vermelho);

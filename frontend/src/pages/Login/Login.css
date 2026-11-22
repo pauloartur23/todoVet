@@ -61,3 +61,21 @@
 .login-botao:hover {
     background: var(--verde-escuro);
 }
+
+.login-erro {
+    background: #fdecec;
+    color: #b42318;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.login-dica {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--borda);
+    font-size: 13px;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
