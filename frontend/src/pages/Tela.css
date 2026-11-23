@@ -137,9 +137,23 @@
 }
 
 .tela-campo input:focus,
-.tela-campo select:focus {
+.tela-campo select:focus,
+.tela-campo textarea:focus {
     outline: 2px solid var(--azul);
     border-color: transparent;
+}
+
+.tela-campo textarea {
+    padding: 10px 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.tela-campo-largo {
+    grid-column: 1 / -1;
 }
 
 .tela-filtros {
@@ -363,4 +377,22 @@
     border-radius: 8px;
     padding: 10px 14px;
     margin-bottom: 16px;
+}
+
+/* telas de prontuario e venda*/
+
+.tela-filtro-hoje .tela-filtro-titulo {
+    color: var(--azul);
+}
+
+.tela-filtro-hoje.ativo {
+    background: var(--azul);
+}
+
+
+.venda-valor-previa {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--verde-escuro);
 }
