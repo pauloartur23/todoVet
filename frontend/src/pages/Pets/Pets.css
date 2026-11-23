@@ -1,0 +1,29 @@
+/* Cards de filtro por espécie */
+.tela-filtro-cachorros .tela-filtro-titulo {
+    color: var(--laranja);
+}
+
+.tela-filtro-gatos .tela-filtro-titulo {
+    color: var(--roxo);
+}
+
+.tela-filtro-outros .tela-filtro-titulo {
+    color: var(--verde);
+}
+
+.tela-filtro-cachorros.ativo {
+    background: var(--laranja);
+}
+
+.tela-filtro-gatos.ativo {
+    background: var(--roxo);
+}
+
+.tela-filtro-outros.ativo {
+    background: var(--verde);
+}
+
+/* Nascimento com a idade, numa linha só */
+.pet-nascimento {
+    white-space: nowrap;
+}
