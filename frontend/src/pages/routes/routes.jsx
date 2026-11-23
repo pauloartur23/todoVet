@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Layout from '../../UI/Layout.jsx';
 import Login from '../Login/Login.jsx';
 import Dashboard from '../Dashboard';
-import Pagina from '../Pagina.jsx';
+import Agendamentos from '../Agendamentos/Agendamentos.jsx';
 import Produtos from '../Produtos/Produtos.jsx';
 import Vacinas from '../Vacinas/Vacinas.jsx';
 import Pagamentos from '../Pagamento/Pagamentos.jsx';
@@ -32,7 +32,7 @@ export default function Rotas() {
 
                 <Route element={<Layout />}>
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/agendamentos" element={<Pagina titulo="Agendamentos" />} />
+                    <Route path="/agendamentos" element={<Agendamentos />} />
                     <Route path="/clientes" element={<Clientes />} />
                     <Route path="/pets" element={<Pets />} />
                     <Route path="/prontuarios" element={<Prontuarios titulo="Prontuários" />} />

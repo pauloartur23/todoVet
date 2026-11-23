@@ -1,0 +1,40 @@
+/* Estilos de painel e lista da agenda vêm de Dashboard.css */
+@import '../Dashboard/Dashboard.css';
+
+.agendamentos-grade {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .agendamentos-grade {
+        grid-template-columns: 1fr;
+    }
+}
+
+.agendamentos-dia-titulo {
+    text-transform: capitalize;
+}
+
+.agendamentos-vazio {
+    padding: 32px 0;
+}
+
+.agendamentos-grupo + .agendamentos-grupo {
+    margin-top: 20px;
+}
+
+.agendamentos-grupo-titulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--azul);
+    text-transform: capitalize;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--borda);
+}
+
+.agenda-item .tela-botao-pequeno {
+    flex-shrink: 0;
+}

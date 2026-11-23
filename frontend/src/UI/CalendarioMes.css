@@ -1,0 +1,106 @@
+.calendario-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.calendario-titulo {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.calendario-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: white;
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.calendario-nav:hover {
+    background: var(--fundo);
+}
+
+.calendario-grade {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    justify-items: center;
+}
+
+.calendario-semana {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    padding: 4px 0;
+}
+
+.calendario-dia {
+    position: relative;
+    width: 100%;
+    max-width: 40px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--texto);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.calendario-dia:hover {
+    background: var(--fundo);
+}
+
+.calendario-dia.hoje {
+    border-color: var(--azul);
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.calendario-dia.selecionado {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: white;
+    font-weight: 600;
+}
+
+.calendario-ponto {
+    position: absolute;
+    bottom: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--verde);
+}
+
+.calendario-dia.selecionado .calendario-ponto {
+    background: white;
+}
+
+.calendario-hoje {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--azul);
+    background: transparent;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.calendario-hoje:hover {
+    background: var(--fundo);
+}
