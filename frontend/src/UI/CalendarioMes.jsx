@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { chaveData } from '../services/agendamentoService.js';
+import { chaveData } from '../utils/datas.js';
 import './CalendarioMes.css';
 
 const DIAS_SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -12,6 +12,11 @@ function CalendarioMes({ selecionado, onSelecionar, contagem = {} }) {
         const [ano, mes] = selecionado.split('-').map(Number);
         return new Date(ano, mes - 1, 1);
     });
+
+    useEffect(() => {
+        const [a, m] = selecionado.split('-').map(Number);
+        setMesVisivel(new Date(a, m - 1, 1));
+    }, [selecionado]);
 
     const hoje = chaveData(new Date());
     const ano = mesVisivel.getFullYear();

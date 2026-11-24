@@ -1,3 +1,6 @@
+import { listarAgendamentos } from './agendamentoService.js';
+import { chaveData } from '../utils/datas.js';
+
 const dados = {
     indicadores: [
         { chave: 'consultas', titulo: 'Consultas hoje', valor: '8', detalhe: '+2 em relação a ontem', tendencia: 'alta' },
@@ -32,5 +35,34 @@ const dados = {
 };
 
 export async function obterResumo() {
-    return dados;
+    const hoje = chaveData(new Date());
+    const doDia = (await listarAgendamentos()).filter(
+        (a) => a.data === hoje && a.status !== 'cancelado'
+    );
+
+    const concluidas = doDia.filter((a) => a.status === 'concluido').length;
+    const pendentes = doDia.length - concluidas;
+
+    const indicadores = dados.indicadores.map((i) =>
+        i.chave === 'consultas'
+            ? {
+                ...i,
+                valor: String(doDia.length),
+                detalhe: `${concluidas} concluídas · ${pendentes} a atender`,
+            }
+            : i
+    );
+
+    const proximosAgendamentos = doDia
+        .filter((a) => a.status === 'agendado')
+        .map((a) => ({
+            id: a.id,
+            hora: a.hora,
+            pet: a.petNome,
+            tutor: a.tutorNome,
+            servico: a.servico,
+            status: a.status,
+        }));
+
+    return { ...dados, indicadores, proximosAgendamentos };
 }

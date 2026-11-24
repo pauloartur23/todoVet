@@ -38,3 +38,8 @@
 .agenda-item .tela-botao-pequeno {
     flex-shrink: 0;
 }
+
+.agendamentos-filtro-vet {
+    max-width: 280px;
+    margin-bottom: 16px;
+}

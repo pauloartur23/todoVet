@@ -150,17 +150,21 @@
     white-space: nowrap;
 }
 
-.agenda-selo-confirmado {
-    background: var(--verde-claro);
-    color: var(--verde-escuro);
-}
-
-.agenda-selo-andamento {
+.agenda-selo-agendado {
     background: #e6eef8;
     color: var(--azul);
 }
 
-.agenda-selo-aguardando {
-    background: #fff4e0;
-    color: #9a5b00;
+.agenda-selo-concluido {
+    background: var(--verde-claro);
+    color: var(--verde-escuro);
+}
+
+.agenda-selo-cancelado {
+    background: #fdecec;
+    color: #b42318;
+}
+
+.agenda-item-cancelado {
+    opacity: 0.6;
 }

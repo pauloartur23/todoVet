@@ -28,9 +28,9 @@ const configAlertas = {
 };
 
 const rotulosStatus = {
-    confirmado: 'Confirmado',
-    andamento: 'Em atendimento',
-    aguardando: 'Aguardando',
+    agendado: 'Agendado',
+    concluido: 'Concluído',
+    cancelado: 'Cancelado',
 };
 
 function saudacao() {

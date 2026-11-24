@@ -6,17 +6,19 @@ import {
     listarAgendamentos,
     criarAgendamento,
     cancelarAgendamento,
-    chaveData,
+    concluirAgendamento,
 } from '../../services/agendamentoService.js';
+import { listarClientes } from '../../services/clienteService.js';
 import CalendarioMes from '../../UI/CalendarioMes.jsx';
 import ModalConfirmacao from '../../UI/ModalConfirmacao.jsx';
+import { chaveData } from '../../utils/datas.js';
 import '../Tela.css';
 import './Agendamentos.css';
 
 const rotulosStatus = {
-    confirmado: 'Confirmado',
-    andamento: 'Em atendimento',
-    aguardando: 'Aguardando',
+    agendado: 'Agendado',
+    concluido: 'Concluído',
+    cancelado: 'Cancelado',
 };
 
 function hojeChave() {
@@ -27,6 +29,8 @@ function somarDias(chave, dias) {
     const [ano, mes, dia] = chave.split('-').map(Number);
     return chaveData(new Date(ano, mes - 1, dia + dias));
 }
+
+const ativos = (lista) => lista.filter((a) => a.status !== 'cancelado');
 
 function dataPorExtenso(chave, opcoes) {
     const [ano, mes, dia] = chave.split('-').map(Number);
@@ -41,9 +45,9 @@ const formVazio = {
     servico: '',
 };
 
-function ItemAgendamento({ a, onCancelar }) {
+function ItemAgendamento({ a, onConcluir, onCancelar }) {
     return (
-        <li className="agenda-item">
+        <li className={`agenda-item ${a.status === 'cancelado' ? 'agenda-item-cancelado' : ''}`}>
             <span className="agenda-hora">{a.hora}</span>
 
             <div className="agenda-info">
@@ -57,9 +61,16 @@ function ItemAgendamento({ a, onCancelar }) {
 
             <span className={`agenda-selo agenda-selo-${a.status}`}>{rotulosStatus[a.status]}</span>
 
-            <button className="tela-botao-pequeno" onClick={() => onCancelar(a)}>
-                Cancelar
-            </button>
+            {a.status === 'agendado' && (
+                <>
+                    <button className="tela-botao-pequeno" onClick={() => onConcluir(a)}>
+                        Concluir
+                    </button>
+                    <button className="tela-botao-pequeno" onClick={() => onCancelar(a)}>
+                        Cancelar
+                    </button>
+                </>
+            )}
         </li>
     );
 }
@@ -74,19 +85,31 @@ function Agendamentos() {
     const [mostrarForm, setMostrarForm] = useState(false);
     const [erro, setErro] = useState('');
     const [paraCancelar, setParaCancelar] = useState(null);
+    const [filtroVet, setFiltroVet] = useState('');
+    const [clientes, setClientes] = useState([]);
 
     useEffect(() => {
-        Promise.all([listarAgendamentos(), listarPets(), listarFuncionarios()]).then(
-            ([listaAgendamentos, listaPets, listaFuncionarios]) => {
-                setAgendamentos(listaAgendamentos);
+        Promise.all([
+            listarAgendamentos(),
+            listarPets(),
+            listarFuncionarios(),
+            listarClientes(),
+        ])
+            .then(([ags, listaPets, funcs, listaClientes]) => {
+                setAgendamentos(ags);
                 setPets(listaPets);
-                setVeterinarios(listaFuncionarios.filter((f) => f.cargo === 'VETERINARIO'));
-            }
-        );
+                setClientes(listaClientes);
+                setVeterinarios(funcs.filter((f) => f.cargo === 'VETERINARIO'));
+            })
+            .catch(() => setErro('Não foi possível carregar os agendamentos.'));
     }, []);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
+    }
+
+    function nomeTutor(pet) {
+        return clientes.find((c) => c.id === pet.clienteId)?.nome ?? '—';
     }
 
     function alternarForm() {
@@ -95,7 +118,10 @@ function Agendamentos() {
             setMostrarForm(false);
         } else {
             setErro('');
-            setForm({ ...formVazio, data: diaSelecionado });
+            setForm({
+                ...formVazio,
+                data: diaSelecionado < hojeChave() ? hojeChave() : diaSelecionado,
+            });
             setMostrarForm(true);
         }
     }
@@ -105,13 +131,16 @@ function Agendamentos() {
         setErro('');
         try {
             const novo = await criarAgendamento(form);
-            setAgendamentos(
-                [...agendamentos, novo].sort((a, b) =>
+            setAgendamentos((atual) =>
+                [...atual, novo].sort((a, b) =>
                     `${a.data} ${a.hora}`.localeCompare(`${b.data} ${b.hora}`)
                 )
             );
             setDiaSelecionado(novo.data);
             setAba('dia');
+            if (filtroVet && filtroVet !== String(novo.veterinarioId)) {
+                setFiltroVet('');
+            }
             setForm(formVazio);
             setMostrarForm(false);
         } catch (err) {
@@ -122,28 +151,45 @@ function Agendamentos() {
     async function confirmarCancelamento() {
         try {
             await cancelarAgendamento(paraCancelar.id);
-            setAgendamentos(agendamentos.filter((a) => a.id !== paraCancelar.id));
+            setAgendamentos((atual) =>
+                atual.map((a) => (a.id === paraCancelar.id ? { ...a, status: 'cancelado' } : a))
+            );
         } catch (err) {
             setErro(err.message);
         }
         setParaCancelar(null);
     }
 
+    async function concluir(a) {
+        setErro('');
+        try {
+            await concluirAgendamento(a.id);
+            setAgendamentos((atual) =>
+                atual.map((x) => (x.id === a.id ? { ...x, status: 'concluido' } : x))
+            );
+        } catch (err) {
+            setErro(err.message);
+        }
+    }
+
     const hoje = hojeChave();
     const limite7 = somarDias(hoje, 6);
     const limite30 = somarDias(hoje, 29);
 
-    const doDia = agendamentos.filter((a) => a.data === diaSelecionado);
-    const proximos7 = agendamentos.filter((a) => a.data >= hoje && a.data <= limite7);
-    const proximos30 = agendamentos.filter((a) => a.data >= hoje && a.data <= limite30);
+    const visiveis = filtroVet
+        ? agendamentos.filter((a) => String(a.veterinarioId) === filtroVet)
+        : agendamentos;
+    const doDia = visiveis.filter((a) => a.data === diaSelecionado);
+    const proximos7 = visiveis.filter((a) => a.data >= hoje && a.data <= limite7);
+    const proximos30 = visiveis.filter((a) => a.data >= hoje && a.data <= limite30);
 
     const abas = [
-        { chave: 'dia', titulo: 'Do dia', lista: doDia },
-        { chave: '7dias', titulo: 'Próximos 7 dias', lista: proximos7 },
-        { chave: '30dias', titulo: 'Próximos 30 dias', lista: proximos30 },
+        { chave: 'dia', titulo: 'Do dia', qtd: ativos(doDia).length },
+        { chave: '7dias', titulo: 'Próximos 7 dias', qtd: ativos(proximos7).length },
+        { chave: '30dias', titulo: 'Próximos 30 dias', qtd: ativos(proximos30).length },
     ];
 
-    const contagem = agendamentos.reduce((acc, a) => {
+    const contagem = ativos(visiveis).reduce((acc, a) => {
         acc[a.data] = (acc[a.data] || 0) + 1;
         return acc;
     }, {});
@@ -160,6 +206,7 @@ function Agendamentos() {
         diaSelecionado === hoje
             ? 'Hoje'
             : dataPorExtenso(diaSelecionado, { weekday: 'long' });
+    const qtdDia = ativos(doDia).length;
 
     return (
         <>
@@ -184,7 +231,7 @@ function Agendamentos() {
                             <option value="">Selecione um pet</option>
                             {pets.map((p) => (
                                 <option key={p.id} value={p.id}>
-                                    {p.nome}
+                                    {p.nome} · {nomeTutor(p)}
                                 </option>
                             ))}
                         </select>
@@ -249,6 +296,21 @@ function Agendamentos() {
                 </form>
             )}
 
+            <div className="tela-campo agendamentos-filtro-vet">
+                <label htmlFor="filtroVet">Veterinário</label>
+                <select
+                    id="filtroVet"
+                    value={filtroVet}
+                    onChange={(e) => setFiltroVet(e.target.value)}
+                >
+                    <option value="">Todos os veterinários</option>
+                    {veterinarios.map((v) => (
+                        <option key={v.id} value={v.id}>
+                            {v.nome}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div className="tela-filtros" role="tablist">
                 {abas.map((t) => (
                     <button
@@ -260,7 +322,7 @@ function Agendamentos() {
                     >
                         <p className="tela-filtro-titulo">{t.titulo}</p>
                         <p className="tela-filtro-qtd">
-                            {t.lista.length} {t.lista.length === 1 ? 'agendamento' : 'agendamentos'}
+                            {t.qtd} {t.qtd === 1 ? 'agendamento' : 'agendamentos'}
                         </p>
                     </button>
                 ))}
@@ -283,7 +345,7 @@ function Agendamentos() {
                         <p className="dashboard-painel-sub">
                             {dataPorExtenso(diaSelecionado, { day: 'numeric', month: 'long', year: 'numeric' })}
                             {' · '}
-                            {doDia.length} {doDia.length === 1 ? 'agendamento' : 'agendamentos'}
+                            {qtdDia} {qtdDia === 1 ? 'agendamento' : 'agendamentos'}
                         </p>
 
                         {doDia.length === 0 ? (
@@ -291,7 +353,7 @@ function Agendamentos() {
                         ) : (
                             <ul className="agenda-lista">
                                 {doDia.map((a) => (
-                                    <ItemAgendamento key={a.id} a={a} onCancelar={setParaCancelar} />
+                                    <ItemAgendamento key={a.id} a={a} onCancelar={setParaCancelar} onConcluir={concluir} />
                                 ))}
                             </ul>
                         )}
@@ -320,7 +382,7 @@ function Agendamentos() {
                             </h3>
                             <ul className="agenda-lista">
                                 {porData[data].map((a) => (
-                                    <ItemAgendamento key={a.id} a={a} onCancelar={setParaCancelar} />
+                                    <ItemAgendamento key={a.id} a={a} onCancelar={setParaCancelar} onConcluir={concluir} />
                                 ))}
                             </ul>
                         </div>
