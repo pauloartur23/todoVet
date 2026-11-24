@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
 import { listarVacinas, cadastrarVacina } from '../../services/vacinaService.js';
+import { listarFuncionarios } from '../../services/funcionarioService.js';
 import '../Tela.css';
 
 const formVazio = {
@@ -31,6 +32,7 @@ function dataBR(iso) {
 
 function Vacinas() {
     const [vacinas, setVacinas] = useState([]);
+    const [veterinarios, setVeterinarios] = useState([]);
     const [form, setForm] = useState(formVazio);
     const [filtro, setFiltro] = useState('todos');
     const [busca, setBusca] = useState('');
@@ -38,6 +40,9 @@ function Vacinas() {
 
     useEffect(() => {
         listarVacinas().then((lista) => setVacinas(lista));
+        listarFuncionarios().then((lista) => {
+            setVeterinarios(lista.filter((f) => f.cargo === 'VETERINARIO'));
+        });
     }, []);
 
     function handleChange(e) {
@@ -100,7 +105,20 @@ function Vacinas() {
 
                     <div className="tela-campo">
                         <label htmlFor="veterinario">Veterinário</label>
-                        <input id="veterinario" name="veterinario" value={form.veterinario} onChange={handleChange} required />
+                        <select
+                            id="veterinario"
+                            name="veterinario"
+                            value={form.veterinario}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Selecione um veterinário</option>
+                            {veterinarios.map((vet) => (
+                                <option key={vet.id} value={vet.nome}>
+                                    {vet.nome}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <button type="submit" className="tela-botao">Salvar</button>
